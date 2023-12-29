@@ -64,7 +64,7 @@
   const currentWeatherDiv = document.querySelector(".current-weather");
   const daysForecastDiv = document.querySelector(".days-forecast");
   
-  const API_KEY = "PASTE-YOUR-API-KEY"; // Paste your API here
+  const API_KEY = "70a5b8a3f08de77e5e2cf1e576ea39ed"; // Paste your API here
   
   // Create weather card HTML based on weather data
   const createWeatherCard = (cityName, weatherItem, index) => {
