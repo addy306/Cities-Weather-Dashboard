@@ -3,8 +3,12 @@
 
 * {
   font-family: 'Open Sans', sans-serif;
+  
 }
 
+h1{
+  color:blue;
+}
 .current-weather img {
   max-width: 120px;
   margin-top: -15px;
