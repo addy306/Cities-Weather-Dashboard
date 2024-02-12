@@ -1,73 +1,16 @@
-/* /*  $(document).ready(function () {
-    // API key from OpenWeatherMap
-    const apiKey = '70a5b8a3f08de77e5e2cf1e576ea39ed';
-     // Get city name from the input
-    const cityName = $('#search-input').val();
+  var cityInput = document.querySelector("#city-input");
+  var searchButton = document.querySelector("#search-btn");
+  var historySect = document.querySelector("#history");
+  var currentWeatherDiv = document.querySelector(".current-weather");
+  var daysForecastDiv = document.querySelector(".days-forecast");
+  var cities = JSON.parse(localStorage.getItem("cities")) || [];
 
-    // Event listener for the form click button
-    //Line 9 simply says, when you click the '#search-btn', call the function 'e'
-    $('#search-btn').click(function (e) {
-      e.preventDefault(); // prevent default
-       //console.log(e);
-     
-      // Call the OpenWeatherMap Geocoding API to get coordinates based on the city name
-      axios
-        .get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
-        )
-        .then((response) => {
-            
-            const datadets = (JSON.stringify(response.data));
-            console.log(datadets);
-          // Extract coordinates from the API response
-          const coordinates = response.data.coord;
-        console.log(coordinates);
-       // return response.json;
-          // Call the OpenWeatherMap 5 Day Forecast API to get weather data based on coordinates
-          return axios.get(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`
-          );
-        })
-        .then((forecastResponse) => {
-          // Display 5-day weather forecast
-          displayForecast(forecastResponse.data);
-        })
-        .catch((error) => {
-          console.error('Error fetching weather data:', error);
-        });
-    });
-
-    // Function to display 5-day weather forecast
-    function displayForecast(forecastData) {
-      const forecastContainer = $('#forecast');
-      forecastContainer.empty();
-
-      // Loop through the forecast data and display relevant information
-      forecastData.list.forEach((forecast) => {
-        const dateTime = forecast.dt_txt;
-        const temperature = forecast.main.temp;
-        const description = forecast.weather[0].description;
-
-        // Display the forecast information
-        const forecastHtml = `
-            <p>${dateTime}</p>
-            <p>Temperature: ${temperature} K</p>
-            <p>Description: ${description}</p>
-        `;
-        forecastContainer.append(forecastHtml);
-      });
-    }
-  });
- */
-  const cityInput = document.querySelector("#city-input");
-  const searchButton = document.querySelector("#search-btn");
-  const currentWeatherDiv = document.querySelector(".current-weather");
-  const daysForecastDiv = document.querySelector(".days-forecast");
   
-  const API_KEY = "70a5b8a3f08de77e5e2cf1e576ea39ed"; // Paste your API here
+  var API_KEY = "70a5b8a3f08de77e5e2cf1e576ea39ed"; // This API key was gotten from openweathermap.org
   
-  // Create weather card HTML based on weather data
-  const createWeatherCard = (cityName, weatherItem, index) => {
+  // This dynamically Creates weather card HTML based on weather data
+  var createWeatherCard = (cityName, weatherItem, index) => {
+    
       if(index === 0) {
           return `<div class="mt-3 d-flex justify-content-between">
                       <div>
@@ -97,15 +40,17 @@
   }
   
   // Get weather details of passed latitude and longitude
-  const getWeatherDetails = (cityName, latitude, longitude) => {
-      const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+ var  getWeatherDetails = (cityName, latitude, longitude) => {
+      var  WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
   
       fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
-          const forecastArray = data.list;
-          const uniqueForecastDays = new Set();
+        console.log(data);
+        //historySect.empty();
+          var  forecastArray = data.list;
+          var  uniqueForecastDays = new Set();
   
-          const fiveDaysForecast = forecastArray.filter(forecast => {
-              const forecastDate = new Date(forecast.dt_txt).getDate();
+          var fiveDaysForecast = forecastArray.filter(forecast => {
+              var  forecastDate = new Date(forecast.dt_txt).getDate();
               if (!uniqueForecastDays.has(forecastDate) && uniqueForecastDays.size < 6) {
                   uniqueForecastDays.add(forecastDate);
                   return true;
@@ -128,21 +73,64 @@
       }).catch(() => {
           alert("An error occurred while fetching the weather forecast!");
       });
+      // Store city in local storage
+  saveToLocalStorage(cityName);
+  // Display search history
+  displaySearchHistory();
   }
   
+  
+
+// Save city to local storage
+const saveToLocalStorage = (cityName) => {
+ // let cities = JSON.parse(localStorage.getItem("cities")) || [];
+  cities.unshift(cityName); // Add the new city to the beginning of the array
+  cities = Array.from(new Set(cities)); // Remove duplicates
+  localStorage.setItem("cities", JSON.stringify(cities));
+
+};
+
+// Display search history
+const displaySearchHistory = () => {
+    historySect.innerHTML = ""; // Clear the search history before appending new buttons
+    
+
+    cities.forEach((city) => {
+        var button = document.createElement("button");
+        button.classList.add("historyBtn");
+        button.textContent = city;
+        historySect.appendChild(button);
+    });
+    var historyBtnArray = document.querySelectorAll(".historyBtn");
+  for (let i = 0; i < historyBtnArray.length; i++) {
+    historyBtnArray[i].addEventListener ("click", function () {
+     //console.log('hello');
+     //this is equal to the button clicked
+     //this.textContent grabs the text content 
+          console.log(this.textContent);
+         var cityName = this.textContent ;
+         getCityCoordinates(cityName)
+    }) 
+};
+}
   // Get coordinates of entered city name
-  const getCityCoordinates = () => {
-      const cityName = cityInput.value.trim();
-      if (cityName === "") return;
-      const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+  var getCityCoordinates = (city) => {
+      
+      if (city === "") return;
+      var API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`;
     
       fetch(API_URL).then(response => response.json()).then(data => {
-          if (!data.length) return alert(`No coordinates found for ${cityName}`);
-          const { lat, lon, name } = data[0];
+          if (!data.length) return alert(`No coordinates found for ${city}`);
+          console.log(data[0]);
+          var { lat, lon, name } = data[0];
           getWeatherDetails(name, lat, lon);
       }).catch(() => {
           alert("An error occurred while fetching the coordinates!");
       });
   }
-  
-  searchButton.addEventListener("click", () => getCityCoordinates());
+
+ // $(document).on("click", ".button", getCityCoordinates);
+  searchButton.addEventListener("click", () => {
+    var cityName = document.querySelector('#city-input').value.trim();
+    getCityCoordinates(cityName)});
+  displaySearchHistory()
