@@ -19,6 +19,7 @@
     
     <title>Weather Dashboard</title>
   </head>
+
   <body>
     
       <header class="container text-md-start my-2 mt-3">
@@ -35,79 +36,89 @@
     </div>
     </header>
     <!-- End of Header -->
-    
+
+    <!-- Weather Section -->
     <div class="container-fluid my-4 weather-data">
       <div class="row">
-        <div class="col-sm-4 bg-light">
+        <!-- Search History Section -->
+        <div class="col-sm-4 border border-primary">
           <h4 class="fw-bold my-4">Search History</h4>
           <div class="list-group d-grid gap-2 col-6 mx-auto" id="history"></div>
         </div>
-        <div class="col-xxl-9 col-md-8 mt-md-1 mt-4 pe-lg-4 ">
-          <div class="current-weather border text-black  py-2 px-4 rounded-3">
-            <div class="mt-3 d-flex justify-content-between">
-              <div >
+ 
+         <!--  Weather Cards -->
+<div class="col-xxl-9 col-md-8 mt-md-1 mt-4 pe-lg-4 ">
+  <!--  Current Weather Card -->
+<div class="current-weather border border-primary text-black  py-2 px-4 rounded-3">
+   <div class="mt-3 d-flex justify-content-between">            
+     <div >
                 <h3 class="fw-bold">_______ ( ______ )</h3>
                 <h6 class="my-3 mt-3">Temperature: __°C</h6>
                 <h6 class="my-3">Wind: __ M/S</h6>
                 <h6 class="my-3">Humidity: __%</h6>
-              </div>
-          </div>
-          </div>
+      </div>
+    </div>
+  </div>
 
           
-          <h4 class="fw-bold my-4">5-Day Forecast</h4>
-          <div class="days-forecast row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 justify-content-between">
-            <div class="col mb-3">
-              <div class="card border-0 bg-secondary text-white">
-                <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
+  <h4 class="fw-bold my-4">5-Day Forecast</h4>
+  <!--  5 Day Weather Forecast  -->
+<div class="days-forecast row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 justify-content-between">
+    <div class="col mb-3">
+              <div class="card border border-primary bg-transparent text-black">
+                <div class="card-body p-3 text-black">
+                  <h5 class="card-title fw-semibold"></h5>
                   <h6 class="card-text my-3 mt-3">Temp: __°C</h6>
                   <h6 class="card-text my-3">Wind: __ M/S</h6>
                   <h6 class="card-text my-3">Humidity: __%</h6>
                 </div>
               </div>
-            </div>
-            <div class="col mb-3">
-              <div class="card border-0 bg-secondary text-white">
-                <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
+    </div>
+    
+    <div class="col mb-3">
+      <div class="card border border-primary bg-transparent text-black">
+                <div class="card-body p-3 text-black">
+                  <h5 class="card-title fw-semibold"></h5>
                   <h6 class="card-text my-3 mt-3">Temp: __°C</h6>
                   <h6 class="card-text my-3">Wind: __ M/S</h6>
                   <h6 class="card-text my-3">Humidity: __%</h6>
                 </div>
               </div>
-            </div>
-            <div class="col mb-3">
-              <div class="card border-0 bg-secondary text-white">
-                <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
+    </div>
+
+    <div class="col mb-3">
+      <div class="card border border-primary bg-transparent text-black">
+                <div class="card-body p-3 text-black">
+                  <h5 class="card-title fw-semibold"></h5>
                   <h6 class="card-text my-3 mt-3">Temp: __°C</h6>
                   <h6 class="card-text my-3">Wind: __ M/S</h6>
                   <h6 class="card-text my-3">Humidity: __%</h6>
                 </div>
               </div>
-            </div>
-            <div class="col mb-3">
-              <div class="card border-0 bg-secondary text-white">
-                <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
+    </div>
+
+    <div class="col mb-3">
+      <div class="card border border-primary bg-transparent text-black">
+                <div class="card-body p-3 text-black">
+                  <h5 class="card-title fw-semibold"></h5>
                   <h6 class="card-text my-3 mt-3">Temp: __°C</h6>
                   <h6 class="card-text my-3">Wind: __ M/S</h6>
                   <h6 class="card-text my-3">Humidity: __%</h6>
                 </div>
               </div>
-            </div>
-            <div class="col mb-3">
-              <div class="card border-0 bg-secondary text-white">
-                <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
+    </div>
+
+    <div class="col mb-3">
+      <div class="card border border-primary bg-transparent text-black">
+                <div class="card-body p-3 text-black">
+                  <h5 class="card-title fw-semibold"></h5>
                   <h6 class="card-text my-3 mt-3">Temp: __°C</h6>
                   <h6 class="card-text my-3">Wind: __ M/S</h6>
                   <h6 class="card-text my-3">Humidity: __%</h6>
                 </div>
               </div>
-            </div>
-          </div>
+    </div>
+</div>
         </div>
       </div>
     </div>

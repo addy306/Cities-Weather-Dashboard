@@ -26,8 +26,8 @@
                   </div>`;
       } else {
           return `<div class="col mb-3">
-                      <div class="card border-0 bg-secondary text-white">
-                          <div class="card-body p-3 text-white">
+          <div class="card border border-primary bg-transparent text-black">
+                          <div class="card-body p-3 text-black">
                               <h5 class="card-title fw-semibold">(${weatherItem.dt_txt.split(" ")[0]})</h5>
                               <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather icon">
                               <h6 class="card-text my-3 mt-3">Temp: ${((weatherItem.main.temp - 273.15).toFixed(2))}°C</h6>
@@ -97,7 +97,7 @@ const displaySearchHistory = () => {
 
     cities.forEach((city) => {
         var button = document.createElement("button");
-        button.classList.add("historyBtn");
+        button.classList.add("historyBtn","btn-outline-primary");
         button.textContent = city;
         historySect.appendChild(button);
     });

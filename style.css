@@ -6,6 +6,12 @@
   
 }
 
+body {
+  background-image: url('./images/sky.jpg');
+  background-size: cover;
+  
+}
+
 h1{
   color:blue;
 }
