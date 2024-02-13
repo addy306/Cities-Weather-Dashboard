@@ -51,11 +51,19 @@ SSH: git clone git@github.com:addy306/Cities-Weather-Dashboard.git
 <!-- Add usage information here -->
 ## Usage 
 Simply click on deployed url and enter your desired city in the input 
-```
+
 
 ## Webpage Features
 ### Screenshots, Videos, GIF
 
+### Screenshot of App Desktop View
+![Screenshot of Webpage](./images/desktop-view.JPG)
+
+### GIF of App been used
+![GIF of App](./images/weather-gif)
+
+### GIF of App responsivness
+![Responsive](./images/responsive-gif)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -73,6 +81,7 @@ Test in browser
 * HTML 
 * CSS
 * Boostrap
+* Weather API
 
 
 ## Questions
